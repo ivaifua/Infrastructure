@@ -1,8 +1,8 @@
 [webservers]
-javaserver  javaserver_host=10.128.0.2  
+javaserver  ansible_host=10.128.0.2  
 
 [dbservers]
-mongoserver  mongoserver_host=10.128.0.3  
+mongoserver  ansible_host=10.128.0.3  
 
 [prodservers:children]
 webservers
