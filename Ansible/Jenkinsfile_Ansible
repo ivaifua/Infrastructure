@@ -1,0 +1,28 @@
+pipeline {   
+  agent any
+   stages {
+   stage('Preparation') { 
+      // for display purposes
+     // Get some code from a GitHub repository
+     steps {
+        //checkout scm
+        git url: 'https://github.com/ivaifua/carts.git'
+       // sh 'docker --version'
+       // sh 'docker pull hashicorp/terraform:light'
+        
+      }
+     }  
+   
+    stage('Build') {
+      steps {
+        sh 'whoami'
+        sh 'ansible --version'
+        sh 'ansible-inventory --list'
+        sh 'ansible -m ping all'
+       // ansiblePlaybook become: true, becomeUser: 'ivaifua', credentialsId: 'javamachine-ssh-key', installation: 'Ansible', inventory: 'hosts', playbook: 'main.yml'
+        sh 'ansible-playbook -i hosts main.yml' 
+        
+      }
+    }
+   }
+}
