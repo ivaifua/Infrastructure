@@ -1,8 +1,14 @@
-[webservers]
-javaserver:10.128.0.2  
+[javaserver]
+10.128.0.2  
+
+[mongoserver]
+10.128.0.3  
 
 [dbservers]
-mongoserver:10.128.0.3  
+mongoserver
+
+[webservers]
+javaserver
 
 [prodservers:children]
 webservers
