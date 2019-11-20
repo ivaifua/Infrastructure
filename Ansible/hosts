@@ -1,17 +1,14 @@
-prodservers:
-     children:
-           webservers:
-             children:
-               javaserver: 
-                 hosts:
-                   10.128.0.2:  
-           dbservers:
-             children:
-               mongoserver: 
-                 hosts:
-                   10.128.0.3:  
-     vars:  
-       ansible_user: jenkins  
-       ansible_ssh_private_key_file: /var/lib/jenkins/.ssh/id_rsa
-       ansible_ssh_extra_args: '-o StrictHostKeyChecking=no' 
+[webservers]
+javaserver:10.128.0.2  
 
+[dbservers]
+mongoserver:10.128.0.3  
+
+[prodservers:children]
+webservers
+dbservers
+ 
+[prodservers:vars]
+ansible_user=jenkins  
+ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/id_rsa
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
