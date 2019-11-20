@@ -1,0 +1,28 @@
+---
+ - name: Installing dockers engine on hosts
+   hosts: all
+   remote_user: jenkins
+   become: yes
+   become_method: sudo
+   tasks:
+     - name: Classify hosts depending on their OS distribution
+       group_by:
+         key: os_{{ ansible_distribution }}
+
+ 
+ - hosts: os_CentOS
+   remote_user: jenkins
+   become: yes
+   become_method: sudo
+   gather_facts: False
+   roles:
+     -installing-docker-on-centos
+     
+     
+ - hosts: os_Debian
+   remote_user: jenkins
+   become: yes
+   become_method: sudo
+   gather_facts: False
+   roles:
+     -installing-docker-on-debian
