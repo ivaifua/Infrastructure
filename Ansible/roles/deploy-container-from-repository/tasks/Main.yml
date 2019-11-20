@@ -25,11 +25,11 @@
      networks:
       - name: microservicesnetwork
 
- - name: Create cartsdb container
-   docker_container:
-     name: carts
-     image: eu.gcr.io/silicon-dialect-245108/cartsdb:latest
-     networks:
-      - name: microservicesnetwork
-     volumes:
-       - cartsdb:/data/db
+# - name: Create cartsdb container
+#   docker_container:
+ #    name: carts
+#     image: eu.gcr.io/silicon-dialect-245108/cartsdb:latest
+#     networks:
+#      - name: microservicesnetwork
+#     volumes:
+ #      - cartsdb:/data/db
