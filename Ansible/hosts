@@ -1,20 +1,8 @@
-[javaserver]
-10.128.0.2  
-
-[mongoserver]
-10.128.0.3  
-
-[dbservers]
-mongoserver
-
-[webservers]
-javaserver
-
-[prodservers:children]
-webservers
-dbservers
+[servers]
+javaserver   ansible_host=10.128.0.2    
+mongoserver  ansible_host=10.128.0.3  
  
-[prodservers:vars]
+[servers:vars]
 ansible_user=jenkins  
 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/id_rsa
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
