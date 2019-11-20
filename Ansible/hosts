@@ -1,7 +1,5 @@
-all:
-  children:
-     prodservers:
-        children:
+prodservers:
+     children:
            webservers:
              children:
                javaserver: 
