@@ -27,3 +27,10 @@
    roles:
       - installing-docker-on-debian
   
+ - hosts: webservers
+   remote_user: jenkins
+   become: yes
+   become_method: sudo
+   gather_facts: False
+   roles:
+      - deploy-container-from-repository
