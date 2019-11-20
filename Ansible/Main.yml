@@ -17,8 +17,7 @@
    gather_facts: False
    roles:
      - installing-docker-on-centos
-      # when: ansible_distribution == 'CentOS'
-     
+         
      
  - hosts: os_Debian
    remote_user: jenkins
@@ -26,6 +25,5 @@
    become_method: sudo
    gather_facts: False
    roles:
-    # - role: -installing-docker-on-debian
-     - installing-docker-on-debian
-   #    when: ansible_distribution == 'Debian'
+      - installing-docker-on-debian
+  
