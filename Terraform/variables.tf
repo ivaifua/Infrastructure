@@ -5,7 +5,7 @@ variable "project_id" {
 
 variable "region" {
   description = "The region to deploy to"
-  default     = "europe-west3"
+  default     = "us-central1"
 }
 
 variable "javaserver_instance_name" {
@@ -30,7 +30,7 @@ variable "mongoserver_boot_disk_source_image" {
 
 variable "javaserver_instance_zone" {
   description = "The zone to deploy the javaserver VM in"
-  default     = "europe-west3-c"
+  default     = "us-central1-c"
 }
 
 variable "javaserver_instance_tags" {
@@ -70,7 +70,7 @@ variable "mongoserver_instance_access_cidrs" {
 
 variable "mongoserver_instance_zone" {
   description = "The zone to deploy the javaserver VM in"
-  default     = "europe-west3-c"
+  default     = "us-central1-c"
 }
 
 variable "serversnetwork_name" {
