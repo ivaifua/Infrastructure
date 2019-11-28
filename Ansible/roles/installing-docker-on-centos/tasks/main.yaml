@@ -1,5 +1,5 @@
 ---
-- name: Install, configure, and start Docker 
+#- name: Install, configure, and start Docker 
   - name: upgrade all packages
     yum:
       name: '*'
