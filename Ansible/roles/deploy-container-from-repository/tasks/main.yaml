@@ -13,17 +13,17 @@
       name: carts
       state: stopped
       
- - name: remove container
-   docker_container:
+  - name: remove container
+    docker_container:
       name: carts
       state: absent
    
- - name: Create carts container
-   docker_container:
-     name: carts
-     image: eu.gcr.io/silicon-dialect-245108/carts:latest
-     networks:
-      - name: microservicesnetwork
+  - name: Create carts container
+    docker_container:
+      name: carts
+      image: eu.gcr.io/silicon-dialect-245108/carts:latest
+      networks:
+       - name: microservicesnetwork
 
 # - name: Create cartsdb container
 #   docker_container:
