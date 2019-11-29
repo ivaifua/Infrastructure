@@ -15,7 +15,6 @@
        - 8081
       networks:
        - name: microservicesnetwork
-         ipv4_address: 172.18.1.1
     register: register_carts_created  
     
   - name: Start container
