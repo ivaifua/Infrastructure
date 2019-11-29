@@ -6,4 +6,4 @@
       networks:
         - name: microservicesnetwork
       volumes:
-        - cartsdb: /data/db
+        - cartsdb_volume:/data/db
