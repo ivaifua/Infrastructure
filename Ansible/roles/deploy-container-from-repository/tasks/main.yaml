@@ -5,11 +5,7 @@
       username: _json_key	
       debug: true
       password: " {{ lookup('file', '/var/lib/jenkins/workspace/Terraform/credentials.json')}}" 
-  
-  - name: Create a network
-    docker_network:
-      name: microservicesnetwork
-   
+    
   - name: Create carts container
     docker_container:
       name: carts
