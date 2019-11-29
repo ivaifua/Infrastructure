@@ -13,15 +13,17 @@
   - name: Create carts container
     docker_container:
       name: carts
+      state: present
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
       networks:
        - name: microservicesnetwork
 
-# - name: Create cartsdb container
-#   docker_container:
- #    name: carts
-#     image: eu.gcr.io/silicon-dialect-245108/cartsdb:latest
-#     networks:
-#      - name: microservicesnetwork
-#     volumes:
- #      - cartsdb:/data/db
+  - name: Create cartsdb container and connect to network
+    docker_container:
+      name: cartsdb
+      image: "mongo:latest"
+      networks:
+        - name: microservicesnetwork
+      volumes:
+        - cartsdb: /data/db
+
