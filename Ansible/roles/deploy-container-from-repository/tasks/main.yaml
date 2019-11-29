@@ -14,13 +14,14 @@
     docker_container:
       name: carts
       state: stopped
-      ignore_errors: True
+    when: docker_container.carts != 0  
+      
       
   - name: remove container
     docker_container:
       name: carts
       state: absent
-      ignore_errors: True
+    when: docker_container.carts != 0  
    
   - name: Create carts container
     docker_container:
