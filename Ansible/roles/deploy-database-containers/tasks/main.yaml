@@ -2,7 +2,8 @@
  - name: Create cartsdb container and connect to network
     docker_container:
       name: cartsdb
-      image: "mongo:latest"
+      image: mongo:latest
+      state: started
       networks:
         - name: microservicesnetwork
       volumes:
