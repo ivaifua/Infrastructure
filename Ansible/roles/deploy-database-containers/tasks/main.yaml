@@ -1,6 +1,6 @@
 ---
  - name: Create cartsdb container and connect to network
-    docker_container:
+   docker_container:
       name: cartsdb
       image: mongo:latest
       state: started
