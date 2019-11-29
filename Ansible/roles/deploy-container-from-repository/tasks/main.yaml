@@ -11,8 +11,25 @@
       name: carts
       state: present
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
+      exposed_ports:
+       - 8081
       networks:
        - name: microservicesnetwork
-      purge_networks: yes
+         ipv4_address: 172.18.1.1
+    register: register_carts_created  
+    
+  - name: Start container
+    docker_container:
+     name: mycontainer
+     state: started
+
+  - name: Purge networks
+    docker_container:
+     name: carts
+     networks: 
+          -name: microservicesnetwork
+     purge_networks: yes
+     state: started
+     when: register_carts_created|changed  
 
   
