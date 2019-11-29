@@ -11,7 +11,7 @@
       name: carts
       state: started
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
-      exposed_ports:
+      published_ports:
        - 8081
       networks:
        - name: microservicesnetwork
