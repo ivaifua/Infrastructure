@@ -9,26 +9,17 @@
   - name: Create carts container
     docker_container:
       name: carts
-      state: present
+      state: started
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
       exposed_ports:
        - 8081
       networks:
        - name: microservicesnetwork
+      purge_networks: yes
     register: register_carts_created  
     
-  - name: Start container
-    docker_container:
-      name: carts
-      state: started
-
-  - name: Purge networks
-    docker_container:
-      name: carts
-      networks: 
-          -name: microservicesnetwork
-      purge_networks: yes
-      state: started
-    when: register_carts_created|changed  
+  
+      
+  
 
   
