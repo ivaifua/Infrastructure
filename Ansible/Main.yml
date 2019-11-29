@@ -26,7 +26,15 @@
    gather_facts: False
    roles:
       - installing-docker-on-debian
-  
+      
+ - name: Creating docker network
+   hosts: all
+   remote_user: jenkins
+   become: yes
+   become_method: sudo
+   roles:
+      - creating-docker-network
+   
  - hosts: webservers
    remote_user: jenkins
    become: yes
@@ -34,3 +42,11 @@
    gather_facts: False
    roles:
       - deploy-container-from-repository
+      
+ - hosts: dbservers
+   remote_user: jenkins
+   become: yes
+   become_method: sudo
+   gather_facts: False
+   roles:
+      - deploy-database-containers     
