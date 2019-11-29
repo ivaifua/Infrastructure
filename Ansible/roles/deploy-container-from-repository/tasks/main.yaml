@@ -19,16 +19,16 @@
     
   - name: Start container
     docker_container:
-     name: carts
-     state: started
+      name: carts
+      state: started
 
   - name: Purge networks
     docker_container:
-     name: carts
-     networks: 
+      name: carts
+      networks: 
           -name: microservicesnetwork
-     purge_networks: yes
-     state: started
-     when: register_carts_created|changed  
+      purge_networks: yes
+      state: started
+    when: register_carts_created|changed  
 
   
