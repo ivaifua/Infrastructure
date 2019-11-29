@@ -40,6 +40,12 @@
       groups: docker
       append: yes
   
+  - name: Add user jenkins to user group
+    user:
+      name: ivaifua 
+      groups: docker
+      append: yes
+  
   - name: Install pip
     yum: 
       name: python-pip 
