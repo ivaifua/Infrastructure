@@ -2,7 +2,7 @@
   - name: Log into private registry and force re-authorization
     docker_login:
       registry: eu.gcr.io
-      username: _json_key	
+      username: IvannaTetletska	
       debug: true
       password: "{{ lookup('file', '/var/lib/jenkins/workspace/Terraform/credentials.json')}}" 
   
