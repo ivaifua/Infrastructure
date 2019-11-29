@@ -6,5 +6,7 @@
       state: started
       networks:
         - name: microservicesnetwork
+      exposed_ports:
+      - 27017
       volumes:
         - cartsdb_volume:/data/db
