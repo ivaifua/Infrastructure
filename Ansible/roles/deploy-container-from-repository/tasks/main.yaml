@@ -2,9 +2,9 @@
   - name: Log into private registry and force re-authorization
     docker_login:
       registry: eu.gcr.io
-      username: IvannaTetletska	
+      username: _json_key	
       debug: true
-      password: " {{ lookup('file', '/var/lib/jenkins/workspace/Terraform/credentials.json')}} " 
+      password: "{{ lookup('file', '/var/lib/jenkins/workspace/Terraform/credentials.json')}}" 
   
   - name: Create a network
     docker_network:
