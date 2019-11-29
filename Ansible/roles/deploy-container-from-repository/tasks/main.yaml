@@ -9,19 +9,6 @@
   - name: Create a network
     docker_network:
       name: microservicesnetwork
-  
-  - name: Stop a container
-    docker_container:
-      name: carts
-      state: stopped
-    when: docker_container.carts != 0  
-      
-      
-  - name: remove container
-    docker_container:
-      name: carts
-      state: absent
-    when: docker_container.carts != 0  
    
   - name: Create carts container
     docker_container:
