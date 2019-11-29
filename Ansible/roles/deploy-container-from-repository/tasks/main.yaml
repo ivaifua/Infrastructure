@@ -19,7 +19,7 @@
     
   - name: Start container
     docker_container:
-     name: mycontainer
+     name: carts
      state: started
 
   - name: Purge networks
