@@ -13,5 +13,6 @@
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
       networks:
        - name: microservicesnetwork
+      purge_networks: yes
 
   
