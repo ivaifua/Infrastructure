@@ -1,14 +1,9 @@
 ---
-- name: Conecting carts container to network
-  docker_swarm:
-    state: join
-    advertise_addr: 172.18.0.2
-    join_token: SWMTKN-1--xxxxx
-    remote_addrs: [ '172.18.0.2:8081' ]
- 
-- name: Conecting cartsdb container to network
-  docker_swarm:
-    state: join
-    advertise_addr: 172.18.0.3
-    join_token: SWMTKN-1--xxxxx
-    remote_addrs: [ '172.18.0.3:27017' ]    
+    - name: Create a network
+      docker_network:
+        name: microservicesnetwork
+        driver: overlay
+        state: present 
+        connected:
+          - carts
+          - cartsdb
