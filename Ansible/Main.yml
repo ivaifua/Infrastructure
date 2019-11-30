@@ -52,7 +52,7 @@
       - deploy-database-containers   
       
  - name: Connecting docker overlay network
-   hosts: dbservers
+   hosts: webservers
    remote_user: jenkins
    become: yes
    become_method: sudo
