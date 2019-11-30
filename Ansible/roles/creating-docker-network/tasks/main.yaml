@@ -1,9 +1,105 @@
 ---
-  - name: Create a network
-    docker_network:
-      name: microservicesnetwork
-      driver: overlay
+    - name: Create a network
+      docker_network:
+        name: microservicesnetwork
+        driver: overlay
+        state: present 
+      with_items: 'carts_swarm'
+      when: >
+           inventory_hostname == docker_swarm_primary_manager
       
-  - name: Init a new swarm with default parameters
-    docker_swarm:
-      state: present    
+    - name: Init a new swarm with default parameters
+      docker_swarm:
+        state: present    
+    
+      
+    - name: docker_swarm | Capturing Docker Swarm Worker join-token
+      command: "docker swarm join-token -q worker"
+      changed_when: false
+      register: "docker_swarm_worker_token"
+      when: >
+            inventory_hostname == docker_swarm_primary_manager
+            
+    - name: docker_swarm | Capturing Docker Swarm Manager join-token
+      command: "docker swarm join-token -q manager"
+      changed_when: false
+      register: "docker_swarm_manager_token"
+      when: >
+            inventory_hostname == docker_swarm_primary_manager
+            
+    - name: docker_swarm | Defining Docker Swarm Manager Address
+      set_fact:
+        docker_swarm_manager_address: "{{ docker_swarm_addr }}:{{ docker_swarm_port }}"
+      changed_when: false
+      when: >
+            inventory_hostname == docker_swarm_primary_manager
+            
+    - name: docker_swarm | Defining Docker Swarm Manager Address
+      set_fact:
+        docker_swarm_manager_address: "{{ hostvars[docker_swarm_primary_manager]['docker_swarm_manager_address'] }}"
+      changed_when: false
+      when: >
+            inventory_hostname != docker_swarm_primary_manager
+            
+    - name: docker_swarm | Defining Docker Swarm Manager join-token
+      set_fact:
+        docker_swarm_manager_token: "{{ hostvars[docker_swarm_primary_manager]['docker_swarm_manager_token'] }}"
+      changed_when: false
+      when: >
+            inventory_hostname != docker_swarm_primary_manager
+            
+    - name: docker_swarm | Defining Docker Swarm Worker join-token
+      set_fact:
+        docker_swarm_worker_token: "{{ hostvars[docker_swarm_primary_manager]['docker_swarm_worker_token'] }}"
+      changed_when: false
+      when: >
+            inventory_hostname != docker_swarm_primary_manager
+            
+    - name: docker_swarm | Joining Additional Docker Swarm Managers To Cluster
+      command: >
+              docker swarm join
+              --listen-addr {{ docker_swarm_addr }}:{{ docker_swarm_port }}
+              --advertise-addr {{ docker_swarm_addr }}
+              --token {{ docker_swarm_manager_token.stdout }}
+              {{ docker_swarm_manager_address }}
+      when: >
+            inventory_hostname != docker_swarm_primary_manager and
+            inventory_hostname not in groups[docker_swarm_workers_ansible_group] and
+            'Swarm: active' not in docker_info.stdout and
+            'Swarm: pending' not in docker_info.stdout
+            
+    - name: docker_swarm | Joining Docker Swarm Workers To Cluster
+      command: >
+             docker swarm join
+             --listen-addr {{ docker_swarm_addr }}:{{ docker_swarm_port }}
+             --advertise-addr {{ docker_swarm_addr }}
+             --token {{ docker_swarm_worker_token.stdout }}
+             {{ docker_swarm_manager_address }}
+      when: >
+            inventory_hostname in groups[docker_swarm_workers_ansible_group] and
+            'Swarm: active' not in docker_info.stdout and
+            'Swarm: pending' not in docker_info.stdout
+            
+    - name: docker_swarm | Capturing Docker Swarm Networks
+      command: "docker network ls"
+      changed_when: false
+      register: "docker_networks"
+      when: >
+            inventory_hostname == docker_swarm_primary_manager
+            
+    - name: docker_swarm | Creating Docker Swarm Networks
+      command: "docker network create --driver {{ item.driver }} {{ item.name }}"
+      with_items: '{{ docker_swarm_networks }}'
+      when: >
+            inventory_hostname == docker_swarm_primary_manager and
+            item.state|lower == "present" and
+            item.name not in docker_networks.stdout
+            
+    - name: docker_swarm | Removing Docker Swarm Networks
+      command: "docker network rm {{ item.name }}"
+      with_items: '{{ docker_swarm_networks }}'
+      when: >
+            inventory_hostname == docker_swarm_primary_manager and
+            item.state|lower == "absent" and
+            item.name in docker_networks.stdout
+  
