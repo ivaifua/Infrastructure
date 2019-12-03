@@ -30,8 +30,8 @@
   register: "docker_networks"
 
 - name: Create a swarm network
-      docker_network:
-        name: microservicesnetwork
-        driver: overlay
-        state: present 
-        attachable: yes
+  docker_network:
+       name: microservicesnetwork
+       driver: overlay
+       state: present 
+       attachable: yes
