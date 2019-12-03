@@ -14,10 +14,10 @@
        state: present
        election_tick: 5
          
-- name: Inspect swarm
-  docker_swarm:
-    state: inspect
-  register: swarm_info
+- name: Get info on Docker Swarm
+  docker_swarm_info:
+  ignore_errors: yes
+  register: result
           
 - name: docker_swarm | Capturing Docker Swarm Worker join-token
   command: "docker swarm join-token -q worker"
