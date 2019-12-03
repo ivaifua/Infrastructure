@@ -49,14 +49,10 @@
   - name: Install pip
     yum: 
       name: python-pip 
-      state: present
+      state: latest
         
   - name: install docker-py
     pip: 
       name: docker-py
-      state: present
-  
-  - name: upgrade all packages
-    yum:
-      name: '*'
       state: latest
+  
