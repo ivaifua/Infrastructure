@@ -16,7 +16,7 @@
          
 - name: Inspect swarm
   docker_swarm:
-    state: docker_swarm_info
+    state: inspect
   register: swarm_info
           
 - name: docker_swarm | Capturing Docker Swarm Worker join-token
