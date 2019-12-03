@@ -51,9 +51,7 @@
     yum:
       name: pip
       state: latest
-    
-  - python_requirements_info:
-    
+   
     
   - name: install docker-py
     pip: 
