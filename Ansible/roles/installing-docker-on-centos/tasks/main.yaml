@@ -52,7 +52,7 @@
       state: latest
     
   - python_requirements_info:
-      python_version:
+    
     
   - name: install docker-py
     pip: 
