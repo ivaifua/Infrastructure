@@ -1,5 +1,5 @@
 ---
-    - name: Create a network
+    - name: Connecting a network
       docker_network:
         name: microservicesnetwork
         driver: overlay
@@ -7,3 +7,11 @@
         connected:
           - carts
           - cartsdb
+
+
+    - name: docker_swarm | Joining Docker Swarm Workers To Cluster
+      docker_swarm:
+        state: join
+        advertise_addr: 10.128.0.2
+        join_token: docker_swarm_manager_token
+        remote_addrs: [ '10.128.0.2:2377' ]
