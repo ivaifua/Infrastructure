@@ -59,3 +59,38 @@
       name: docker-py
       state: latest
   
+  - name: Remove  docker swarm
+    docker_swarm:
+        force: yes
+        state: absent
+  
+  - name: Initializing docker swarm
+    docker_swarm:
+       state: present
+
+  - name: Update swarm configuration
+    docker_swarm:
+       state: present
+       election_tick: 5
+         
+  - name: Get info on Docker Swarm
+    docker_swarm_info:
+    ignore_errors: yes
+    register: result
+          
+  - name: docker_swarm | Capturing Docker Swarm Worker join-token
+    command: "docker swarm join-token -q manager"
+    changed_when: false
+    register: "docker_swarm_manager_token"
+
+  - name: docker_swarm | Capturing Docker Swarm Networks
+    command: "docker network ls"
+    changed_when: false
+    register: "docker_networks"
+
+  - name: Create a swarm network
+    docker_network:
+       name: microservicesnetwork
+       driver: overlay
+       state: present 
+       attachable: yes
