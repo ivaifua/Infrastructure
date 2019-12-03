@@ -35,7 +35,7 @@
    roles:
       - creating-docker-network
 
-- name: Connecting docker overlay network
+ - name: Connecting docker overlay network
    hosts: dbservers
    remote_user: jenkins
    become: yes
