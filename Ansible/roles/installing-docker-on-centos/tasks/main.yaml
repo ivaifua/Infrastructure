@@ -11,7 +11,7 @@
         - yum-utils
         - device-mapper-persistent-data 
         - lvm2  
-        #- python3 
+        - python3 
       state: present 
       update_cache: yes
    
@@ -49,7 +49,7 @@
   
   - name: Install pip
     yum:
-      name: pip
+      name: python-pip 
       state: latest
    
     
