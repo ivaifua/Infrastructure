@@ -28,7 +28,7 @@
       - installing-docker-on-debian
       
  - name: Creating docker overlay network
-   hosts: webservers
+   hosts: all
    remote_user: jenkins
    become: yes
    become_method: sudo
