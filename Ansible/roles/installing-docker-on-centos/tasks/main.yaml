@@ -57,6 +57,10 @@
       name: python-pip 
       state: latest
    
-    
+  - name: uninstall docker-py
+    pip: 
+      name: docker-py
+      state: present
+        
  
  
