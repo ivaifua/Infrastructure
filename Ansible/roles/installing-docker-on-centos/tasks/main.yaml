@@ -47,8 +47,8 @@
       append: yes
   
   - name: Install pip
-    yum: 
-      name: python-pip 
+    easy_install:
+      name: pip
       state: latest
         
   - name: install docker-py
