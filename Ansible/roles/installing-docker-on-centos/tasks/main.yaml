@@ -54,3 +54,4 @@
   - name: install docker-py
     pip: 
       name: docker-py
+      state: present
