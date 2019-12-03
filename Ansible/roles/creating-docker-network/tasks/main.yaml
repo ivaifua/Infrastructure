@@ -24,7 +24,7 @@
   changed_when: false
   register: "docker_swarm_worker_token"
   when: >
-        inventory_hostname == docker_swarm_primary_manager
+        inventory_hostname == javaserver
 
 - name: docker_swarm | Capturing Docker Swarm Manager join-token
   command: "docker swarm join-token -q manager"
