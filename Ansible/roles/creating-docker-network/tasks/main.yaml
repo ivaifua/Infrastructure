@@ -29,9 +29,9 @@
   changed_when: false
   register: "docker_networks"
 
-#- name: Create a swarm network
- # docker_network:
-  #   name: microservicesnetwork
-   #  driver: overlay
-    # state: present 
-     #attachable: yes
+- name: Create a swarm network
+  docker_network:
+      name: micronet
+      driver: overlay
+      state: present
+      attachable: yes
