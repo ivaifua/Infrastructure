@@ -55,4 +55,4 @@
     pip: 
       name: docker-py
       state: present
-      update_cache: yes
+      version: 2.0.0
