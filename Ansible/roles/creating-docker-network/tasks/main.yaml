@@ -34,3 +34,4 @@
         name: microservicesnetwork
         driver: overlay
         state: present 
+        attachable: yes
