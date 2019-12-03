@@ -16,18 +16,9 @@
          
 - name: Inspect swarm
   docker_swarm:
-    state: inspect
+    state: docker_swarm_info
   register: swarm_info
           
-- name: docker_swarm | Init Docker Swarm Mode On First Manager
-  command: >
-          docker swarm init
-          --listen-addr {{ docker_swarm_addr }}:{{ docker_swarm_port }}
-          --advertise-addr {{ docker_swarm_addr }}
-  when: >
-        'Swarm: inactive' in docker_info.stdout and
-        inventory_hostname == docker_swarm_primary_manage
-
 - name: docker_swarm | Capturing Docker Swarm Worker join-token
   command: "docker swarm join-token -q worker"
   changed_when: false
