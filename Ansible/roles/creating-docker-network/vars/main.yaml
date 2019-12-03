@@ -1,0 +1,17 @@
+docker_swarm_addr: "{{ hostvars[inventory_hostname]['ansible_' + docker_swarm_interface]['ipv4']['address'] }}"
+docker_swarm_cert_expiry: '2160h0m0s' # Validity period for node certificates (default 2160h0m0s)
+docker_swarm_dispatcher_heartbeat_duration: '5s' # Dispatcher heartbeat period (default 5s)
+docker_swarm_interface: "enp0s8"
+docker_swarm_managers_ansible_group: 'webservers'
+docker_swarm_networks:
+  - name: 'carts_net'
+    driver: 'overlay'
+    state: 'present'
+  - name: 'catalog_net'
+    driver: 'overlay'
+    state: 'present'
+docker_swarm_primary_manager: '{{ groups[docker_swarm_managers_ansible_group][0] }}'
+# docker_swarm_primary_manager: 'node0'
+docker_swarm_task_history_limit: '5' # Task history retention limit (default 5)
+docker_swarm_workers_ansible_group: 'dbservers'
+docker_swarm_port: "2377"
