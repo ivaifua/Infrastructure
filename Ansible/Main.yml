@@ -27,13 +27,7 @@
    roles:
       - installing-docker-on-debian
       
- - name: Creating docker overlay network
-   hosts: webservers
-   remote_user: jenkins
-   become: yes
-   become_method: sudo
-   roles:
-      - creating-docker-network
+
 
  - name: Connecting docker overlay network
    hosts: dbservers
