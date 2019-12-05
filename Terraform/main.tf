@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = "${file("credentials.json")}"
+  credentials = "${file("/home/ivaifua/.ssh/credentials.json")}"
   
  }
 resource "google_compute_network" "serversnetwork" {
