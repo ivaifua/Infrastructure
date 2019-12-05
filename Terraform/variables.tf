@@ -99,11 +99,11 @@ default     = "/var/lib/jenkins/.ssh/id_rsa"
 
 variable "prodservers_ip_cidr_range" {
   description = ""
-  default     = "10.128.0.0/20"
+  default     = "10.10.0.0/20"
 } 
 variable "javaserver_instance_network_ip" {
   description = ""
-  default     = "10.128.0.2"
+  default     = "10.10.0.2"
 } 
 variable "javaserver_instance_network_tier" {
   description = ""
@@ -111,7 +111,7 @@ variable "javaserver_instance_network_tier" {
 } 
 variable "mongoserver_instance_network_ip" {
   description = ""
-  default     = "10.128.0.3"
+  default     = "10.10.0.3"
 } 
 variable "mongoserver_instance_network_tier" {
   description = ""
