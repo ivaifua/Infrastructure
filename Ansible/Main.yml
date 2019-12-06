@@ -42,14 +42,6 @@
    become_method: sudo
    roles:
       - connecting-docker-network
-    
- - hosts: webservers
-   remote_user: jenkins
-   become: yes
-   become_method: sudo
-   gather_facts: False
-   roles:
-      - deploy-container-from-repository
       
  - hosts: dbservers
    remote_user: jenkins
@@ -58,4 +50,13 @@
    gather_facts: False
    roles:
       - deploy-database-containers   
+      
+ - hosts: webservers
+   remote_user: jenkins
+   become: yes
+   become_method: sudo
+   gather_facts: False
+   roles:
+      - deploy-container-from-repository
+
       
