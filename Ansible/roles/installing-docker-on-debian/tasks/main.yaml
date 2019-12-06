@@ -54,10 +54,10 @@
      
   - name: Install pip
     apt: 
-      name: python-pip 
+      name: python-pip2 
       state: present
        
   - name: install docker-py
-    pip: 
+    pip2: 
       name: docker-py
       state: present
