@@ -4,12 +4,7 @@
     yum:
       name: '*'
       state: latest
-      
-  - name: uninstall docker-py
-    pip: 
-      name: docker-py
-      state: absent
-      
+           
   - name: Install packages to allow apt to use a repository over HTTPS
     yum: 
       name:
