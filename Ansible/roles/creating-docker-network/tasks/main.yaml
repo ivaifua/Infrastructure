@@ -31,7 +31,7 @@
 
 - name: Create a swarm network
   docker_network:
-      name: micronet
+      name: microservicesnetwork
       driver: overlay
       state: present
       attachable: yes
