@@ -13,6 +13,7 @@
         - curl 
         - gnupg2 
         - software-properties-common
+        - python3
       state: present 
       update_cache: yes
      
