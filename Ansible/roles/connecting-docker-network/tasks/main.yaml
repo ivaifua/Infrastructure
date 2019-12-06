@@ -2,9 +2,9 @@
     - name: docker_swarm | Joining Docker Swarm Workers To Cluster
       docker_swarm:
          state: join
-         advertise_addr: 10.10.0.2
+         advertise_addr: 10.10.0.3
          join_token: docker_swarm_worker_token
-         remote_addrs: [ '10.10.0.3:2377' ]
+         remote_addrs: [ '10.10.0.2:2377' ]
          
     - name: Connecting a network
       docker_network:
