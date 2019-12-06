@@ -39,7 +39,7 @@
 
   - name: Install pip
     yum:
-      name: python3-pip
+      name: python3-pip2
       state: latest
    
   - name: Install docker-py
