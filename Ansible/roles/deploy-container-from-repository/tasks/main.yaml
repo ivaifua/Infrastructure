@@ -20,7 +20,20 @@
       purge_networks: yes
     register: register_carts_created  
     
-  
+  - name: Create front-end container
+    docker_container:
+      name: front-end
+      command: "--spring.data.mongodb.host=cartsdb" 
+      state: started
+      detach: yes
+      image: eu.gcr.io/silicon-dialect-245108/carts:latest
+      published_ports:
+       - 8079
+      networks:
+       - name: microservicesnetwork
+      purge_networks: yes
+    register: register_front-end_created  
+    
       
   
 
