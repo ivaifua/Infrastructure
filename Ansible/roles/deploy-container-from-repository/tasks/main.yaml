@@ -9,7 +9,9 @@
   - name: Create carts container
     docker_container:
       name: carts
+      command: "--spring.data.mongodb.host=mongodb" 
       state: started
+      detach: yes
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
       published_ports:
        - 8081
