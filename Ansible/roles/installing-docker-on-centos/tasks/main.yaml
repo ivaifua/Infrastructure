@@ -11,7 +11,7 @@
         - yum-utils
         - device-mapper-persistent-data 
         - lvm2 
-        - python3
+        - python-pip
       state: present 
       update_cache: yes
    
@@ -37,15 +37,14 @@
         ansible_os_family == "RedHat" and
         ansible_distribution != "Fedora"
 
-  - name: Install pip
+  - name: Install Docker Module for Python
+    pip:
+        name: docker    
+    
+  - name: Install the 'Development tools' package group
     yum:
-      name: python-pip
-      state: latest
-   
-  - name: Install docker-py
-    pip: 
-      name: docker-py
-      state: present
+        name: "@Development tools"
+        state: present  
         
   - name: Start Docker service
     service:
