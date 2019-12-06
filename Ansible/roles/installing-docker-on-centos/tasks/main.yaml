@@ -46,6 +46,17 @@
         name: "@Development tools"
         state: present  
         
+  - name: Install additional tools
+    yum:
+        name:
+          - gettext-devel
+          - openssl-devel
+          - perl-CPAN
+          - perl-devel
+          - zlib-devel
+          - https://centos7.iuscommunity.org/ius-release.rpm
+        state: latest      
+        
   - name: Start Docker service
     service:
       name: docker
