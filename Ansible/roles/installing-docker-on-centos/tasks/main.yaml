@@ -16,7 +16,6 @@
         - yum-utils
         - device-mapper-persistent-data 
         - lvm2  
-        - python3 
       state: present 
       update_cache: yes
    
@@ -33,7 +32,25 @@
         - containerd.io 
       state: present 
       update_cache: yes
-  
+    
+  - name: Installing EPEL Repo (RedHat)
+    yum:
+      name: "epel-release"
+      state: "present"
+    when: >
+        ansible_os_family == "RedHat" and
+        ansible_distribution != "Fedora"
+
+  - name: Install pip
+    yum:
+      name: python-pip 
+      state: latest
+   
+  - name: Install docker-py
+    pip: 
+      name: docker-py
+      state: present
+        
   - name: Start Docker service
     service:
       name: docker
@@ -45,22 +62,4 @@
       name: jenkins 
       groups: docker
       append: yes
-  
-  - name: Add user jenkins to user group
-    user:
-      name: jenkins 
-      groups: docker
-      append: yes
-  
-  - name: Install pip
-    yum:
-      name: python-pip 
-      state: latest
-   
-  - name: Install docker-py
-    pip: 
-      name: docker-py
-      state: present
-        
- 
- 
+
