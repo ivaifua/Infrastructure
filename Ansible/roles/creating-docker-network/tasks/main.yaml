@@ -18,16 +18,6 @@
   docker_swarm_info:
   ignore_errors: yes
   register: result
-          
-- name: docker_swarm | Capturing Docker Swarm Worker join-token
-  command: "docker swarm join-token -q manager"
-  changed_when: false
-  register: "docker_swarm_manager_token"
-
-- name: docker_swarm | Capturing Docker Swarm Networks
-  command: "docker network ls"
-  changed_when: false
-  register: "docker_networks"
 
 - name: Create a swarm network
   docker_network:
@@ -35,3 +25,16 @@
       driver: overlay
       state: present
       attachable: yes
+      
+- name: docker_swarm | Capturing Docker Swarm Worker join-token
+  command: "docker swarm join-token -q worker"
+  changed_when: false
+  register: "docker_swarm_worker_token"
+
+
+- name: docker_swarm | Capturing Docker Swarm Networks
+  command: "docker network ls"
+  changed_when: false
+  register: "docker_networks"
+
+
