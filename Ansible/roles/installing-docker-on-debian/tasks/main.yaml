@@ -58,6 +58,6 @@
       state: present
        
   - name: install docker-py
-    pip2: 
+    pip: 
       name: docker-py
       state: present
