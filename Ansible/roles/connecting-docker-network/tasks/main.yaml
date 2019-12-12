@@ -3,7 +3,7 @@
       docker_swarm:
          state: join
          advertise_addr: 10.10.0.3
-         join_token: 'docker_swarm_worker_token.stdout'
+         join_token: 'docker_swarm_worker_token'
          remote_addrs: [ '10.10.0.2:2377' ]
          
     - name: Connecting a network
