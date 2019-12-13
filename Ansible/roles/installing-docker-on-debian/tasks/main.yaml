@@ -45,7 +45,13 @@
         - containerd.io
       state: present 
       update_cache: yes
-   
+  
+  - name: Start Docker service
+    service:
+      name: docker
+      state: started
+      enabled: yes
+  
   - name: Add user jenkins to user group
     user:
       name: jenkins 
