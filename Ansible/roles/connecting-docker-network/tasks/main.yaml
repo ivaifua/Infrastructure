@@ -2,7 +2,7 @@
     - name: docker_swarm | Joining Docker Swarm Workers To Cluster
       docker_swarm:
          state: join
-         advertise_addr: '{{ hostvars[groups["dbservers"]][0].ansible_default_ipv4.address }}'
+         advertise_addr: '{{ hostvars[groups["dbservers"][0]].ansible_default_ipv4.address }}'
          join_token: '{{hostvars[groups["webservers"][0]].docker_swarm_worker_token.stdout}}'   
          remote_addrs: [ '{{hostvars[groups["webservers"][0]].ansible_default_ipv4.address}}:2377'  ]
          
