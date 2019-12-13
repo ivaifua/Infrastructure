@@ -16,7 +16,7 @@
       published_ports:
        - '8081'
       networks:
-       - name: microservicesnetwork
+       - name: 'microservicesnetwork'
       purge_networks: yes
     register: register_carts_created  
     
