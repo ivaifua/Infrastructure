@@ -32,7 +32,7 @@
       networks:
        - name: 'microservicesnetwork'
       purge_networks: yes
-    register: register_front-end_created  
+    register: register_front_end_created  
     
       
   
