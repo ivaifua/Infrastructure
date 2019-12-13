@@ -30,7 +30,7 @@
       published_ports:
        - '8079'
       networks:
-       - name: microservicesnetwork
+       - name: 'microservicesnetwork'
       purge_networks: yes
     register: register_front-end_created  
     
