@@ -17,7 +17,6 @@
        - '8081'
       networks:
        - name: 'microservicesnetwork'
-    #  purge_networks: yes
     register: register_carts_created  
     
   - name: Create front-end container
@@ -30,7 +29,6 @@
        - '8079'
       networks:
        - name: 'microservicesnetwork'
-   #   purge_networks: yes
     register: register_front_end_created  
     
       
