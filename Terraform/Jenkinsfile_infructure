@@ -10,7 +10,7 @@ pipeline {
     stage('checkout') {
       steps {
         //checkout scm
-        git url: 'https://github.com/ivaifua/carts.git'
+        git url: 'https://github.com/ivaifua/Infrastructure.git'
        // sh 'docker --version'
        // sh 'docker pull hashicorp/terraform:light'
         
@@ -24,16 +24,13 @@ pipeline {
             def tfHome = tool name: 'Terraform'
             env.PATH = "${tfHome}:${env.PATH}"
             
-            //Remove the terraform state file so we always start from a clean state
-            if (fileExists(".terraform/terraform.tfstate")) {
-               sh "rm -rf .terraform/terraform.tfstate"
-           }
+          // }
             if (fileExists("status")) {
                sh "rm status"
             }
             }
     
-           sh 'terraform init' 
+           sh 'terraform init ./Terraform/' 
            sh 'terraform  version'
        
       }
@@ -41,7 +38,7 @@ pipeline {
     }
     stage('planning') {
       steps {
-         sh 'terraform plan'
+         sh 'terraform plan ./Terraform/'
      
       }
     }
@@ -55,25 +52,29 @@ pipeline {
                 choice(
                 name: 'Provision',
                 choices:"Apply\nDestroy",
-                description: "Choose what you want to do")
+                description: "Choose what you whant to do")
             ]  
       }
-    }
-    }
+    
+    }}
       
     stage('approval') {
     steps {    
         script {
                     if (ChooseProv == "Apply") {
-                        sh 'terraform plan -out=plan'
+                        sh 'terraform plan -out=plan ./Terraform/'
                         sh 'terraform apply plan'
-   
+
                     } else if (ChooseProv == "Destroy") {
-                        sh 'terraform destroy -auto-approve'
+                        sh 'terraform destroy -auto-approve ./Terraform/'
+                        //Remove the terraform state file so we always start from a clean state
+                        if (fileExists("./Terraform/terraform.tfstate")) {
+                        sh "rm -rf ./Terraform/terraform.tfstate"
+                    }
                     }
                     
-              }      
-    }
+              }  }     
     }
     }   
     }
+ 
