@@ -43,13 +43,13 @@
    roles:
       - connecting-docker-network
       
- - hosts: dbservers
-   remote_user: jenkins
-   become: yes
-   become_method: sudo
-   gather_facts: False
-   roles:
-      - deploy-database-containers   
+# - hosts: dbservers
+ #  remote_user: jenkins
+ #  become: yes
+ #  become_method: sudo
+ #  gather_facts: False
+ #  roles:
+ #     - deploy-database-containers   
       
  - hosts: webservers
    remote_user: jenkins
