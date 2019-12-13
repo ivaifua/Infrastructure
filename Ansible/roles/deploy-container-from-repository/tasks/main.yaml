@@ -14,7 +14,7 @@
       detach: yes
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
       published_ports:
-       - 8081
+       - '8081'
       networks:
        - name: microservicesnetwork
       purge_networks: yes
@@ -28,7 +28,7 @@
       detach: yes
       image: eu.gcr.io/silicon-dialect-245108/carts:latest
       published_ports:
-       - 8079
+       - '8079'
       networks:
        - name: microservicesnetwork
       purge_networks: yes
